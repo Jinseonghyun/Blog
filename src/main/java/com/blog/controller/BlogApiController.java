@@ -3,6 +3,7 @@ package com.blog.controller;
 import com.blog.domain.Article;
 import com.blog.dto.AddArticleRequest;
 import com.blog.dto.ArticleResponse;
+import com.blog.dto.UpdateArticleRequest;
 import com.blog.service.BlogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -57,5 +58,14 @@ public class BlogApiController { // HTTP Response Body 에 객체 데이터를 J
 
         return  ResponseEntity.ok()
                 .build();
+    }
+
+    // 블로그 글 수정
+    @PutMapping("/api/articles/{id}")
+    public ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody UpdateArticleRequest request) {
+        Article updatedArticle = blogService.update(id, request);
+
+        return ResponseEntity.ok()
+                .body(updatedArticle);
     }
 }
