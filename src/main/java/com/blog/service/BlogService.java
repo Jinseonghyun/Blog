@@ -30,4 +30,9 @@ public class BlogService {
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id)); // 엔티티 조회하고 없으면 예외 발생
     }
 
+    // 블로그 글 삭제
+    public void delete(Long id) {
+        blogRepository.deleteById(id);
+    }
+
 }
